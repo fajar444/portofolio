@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fajar Putra | Optometrist & Full Stack Developer</title>
+    
+    <!-- Material Design Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
+    
+    <style>
+        /* CSS Variables untuk Tema Light/Dark */
+        :root {
+            /* Light Theme */
+            --bg-main: #f0f4f8;
+            --bg-sec: rgba(255, 255, 255, 0.85);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent: #0284c7;
+            --accent-glow: rgba(37, 99, 235, 0.2);
+            --border: rgba(226, 232, 240, 0.8);
+            --card-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-text: linear-gradient(135deg, #2563eb, #0ea5e9);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme */
+            --bg-main: #020617;
+            --bg-sec: rgba(15, 23, 42, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --primary-hover: #7dd3fc;
+            --accent: #818cf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --border: rgba(51, 65, 85, 0.6);
+            --card-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+            --gradient-text: linear-gradient(135deg, #38bdf8, #818cf8);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; }
+        
+        body { 
+            background-color: var(--bg-main); 
+            color: var(--text-main); 
+            transition: var(--transition); 
+            line-height: 1.7; 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Decorative Background Blobs */
+        .blob {
+            position: fixed; border-radius: 50%; filter: blur(80px); z-index: -1;
+            opacity: 0.5; transition: var(--transition);
+        }
+        .blob-1 { top: -10%; left: -10%; width: 40vw; height: 40vw; background: var(--accent-glow); animation: floatBlob 15s ease-in-out infinite alternate; }
+        .blob-2 { bottom: -10%; right: -5%; width: 35vw; height: 35vw; background: rgba(129, 140, 248, 0.1); animation: floatBlob 20s ease-in-out infinite alternate-reverse; }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        .gradient-text { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        
+        /* Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Navbar */
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 0; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background-color: rgba(var(--bg-main), 0.6);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 1000;
+        }
+        .logo { font-size: 1.6rem; font-weight: 800; letter-spacing: 0.5px; }
+        .logo span { color: var(--primary); }
+        .controls { display: flex; gap: 12px; }
+        .btn-icon { 
+            background: var(--bg-sec); border: 1px solid var(--border); 
+            color: var(--text-main); width: 42px; height: 42px; 
+            border-radius: 50%; cursor: pointer; display: flex; 
+            align-items: center; justify-content: center; font-size: 1.2rem;
+            transition: var(--transition); backdrop-filter: blur(8px);
+        }
+        .btn-icon:hover { background: var(--primary); color: #fff; transform: scale(1.1) rotate(15deg); }
+        .btn-text {
+            background: var(--bg-sec); border: 1px solid var(--border); 
+            color: var(--text-main); padding: 0 18px; border-radius: 20px;
+            font-weight: 600; cursor: pointer; transition: var(--transition); backdrop-filter: blur(8px);
+        }
+        .btn-text:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
+
+        /* Hero Section */
+        .hero { 
+            display: flex; flex-wrap: wrap-reverse; align-items: center; 
+            gap: 60px; padding: 120px 0 80px 0; min-height: 85vh;
+        }
+        .hero-content { flex: 1.2; min-width: 300px; }
+        .badge { 
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; 
+            background: var(--bg-sec); border: 1px solid var(--border);
+            color: var(--primary); border-radius: 30px; font-weight: 700; 
+            font-size: 0.9rem; margin-bottom: 25px; box-shadow: var(--card-shadow);
+            backdrop-filter: blur(8px);
+        }
+        
+        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 15px; font-weight: 800; letter-spacing: -1px; }
+        .hero h2 { font-size: 1.6rem; color: var(--text-muted); font-weight: 500; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .hero p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 40px; max-width: 650px; line-height: 1.8; }
+        
+        .action-btns { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
+        .btn { 
+            padding: 15px 30px; border-radius: 14px; font-weight: 600; 
+            display: inline-flex; align-items: center; gap: 10px; cursor: pointer; 
+            transition: var(--transition); border: none; font-size: 1.05rem;
+            position: relative; overflow: hidden; z-index: 1;
+        }
+        .btn::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+            background: rgba(255,255,255,0.1); transition: var(--transition); z-index: -1;
+        }
+        .btn:hover::before { width: 100%; }
+        .btn-whatsapp { background: #25D366; color: #fff; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25); }
+        .btn-whatsapp:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4); }
+        .btn-email { background: #EA4335; color: #fff; box-shadow: 0 8px 20px rgba(234, 67, 53, 0.25); }
+        .btn-email:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(234, 67, 53, 0.4); }
+        .btn-outline { background: var(--bg-sec); border: 2px solid var(--primary); color: var(--primary); backdrop-filter: blur(8px); }
+        .btn-outline:hover { background: var(--primary); color: #fff; transform: translateY(-4px); }
+
+        .social-links { display: flex; gap: 20px; font-size: 2rem; color: var(--text-muted); }
+        .social-links a { display: inline-block; transition: var(--transition); }
+        .social-links a:hover { color: var(--primary); transform: translateY(-5px) scale(1.1); }
+
+        /* Profile Image */
+        .hero-img-container { 
+            flex: 1; display: flex; justify-content: center; align-items: center;
+            min-width: 300px; position: relative;
+        }
+        .hero-img {
+            width: 100%; max-width: 360px; aspect-ratio: 9/16; 
+            border-radius: 40px; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            border: 6px solid var(--bg-sec);
+            animation: floatProfile 6s ease-in-out infinite;
+            position: relative; z-index: 2;
+        }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .hero-img:hover img { transform: scale(1.08); }
+        
+        .hero-img-bg {
+            position: absolute; width: 100%; max-width: 360px; aspect-ratio: 9/16;
+            background: var(--gradient-text); border-radius: 40px;
+            transform: rotate(6deg) scale(1.05); opacity: 0.5; filter: blur(10px);
+            z-index: 1; animation: pulseBg 4s infinite alternate;
+        }
+
+        @keyframes floatProfile { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes pulseBg { 0% { opacity: 0.3; transform: rotate(4deg) scale(1); } 100% { opacity: 0.6; transform: rotate(8deg) scale(1.05); } }
+
+        /* Sections */
+        section { padding: 90px 0; position: relative; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-title { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+
+        /* Skills Matrix */
+        .skills-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;
+        }
+        .skill-box {
+            background: var(--bg-sec); border: 1px solid var(--border); border-radius: 24px;
+            padding: 40px; backdrop-filter: blur(12px); box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        .skill-box:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.25); }
+        .skill-box h3 { font-size: 1.5rem; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+        .skill-box h3 span { font-size: 2rem; color: var(--primary); }
+        
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag {
+            background: var(--bg-main); border: 1px solid var(--border); color: var(--text-main);
+            padding: 8px 16px; border-radius: 12px; font-size: 0.95rem; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 8px; transition: var(--transition);
+            cursor: default;
+        }
+        .tag:hover { background: var(--primary); color: white; border-color: var(--primary); transform: translateY(-3px) scale(1.05); }
+        .tag i { font-size: 1.2rem; color: var(--accent); transition: var(--transition); }
+        .tag:hover i { color: white; }
+
+        /* Timeline */
+        .timeline-container { max-width: 900px; margin: 0 auto; }
+        .timeline-item { 
+            position: relative; padding-left: 50px; margin-bottom: 50px;
+            border-left: 3px solid var(--border); transition: var(--transition);
+        }
+        .timeline-item:hover { border-left-color: var(--primary); }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -12px; top: 0px;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: var(--primary); border: 4px solid var(--bg-main);
+            box-shadow: 0 0 0 4px var(--accent-glow); transition: var(--transition);
+        }
+        .timeline-item:hover::before { transform: scale(1.3); background: var(--accent); }
+        .timeline-date { 
+            display: inline-block; background: var(--accent-glow); color: var(--primary); 
+            font-weight: 700; font-size: 0.9rem; padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; 
+        }
+        .timeline-title { font-size: 1.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
+        .timeline-company { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px;}
+        .timeline-desc { background: var(--bg-sec); padding: 25px; border-radius: 16px; border: 1px solid var(--border); box-shadow: var(--card-shadow); backdrop-filter: blur(10px); }
+        .timeline-desc li { margin-bottom: 12px; color: var(--text-muted); margin-left: 20px; line-height: 1.7; }
+
+        /* Projects Grid */
+        .projects-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; 
+        }
+        .project-card {
+            background: var(--bg-sec); border: 1px solid var(--border); border-radius: 24px;
+            padding: 35px; transition: var(--transition); position: relative; overflow: hidden;
+            box-shadow: var(--card-shadow); display: flex; flex-direction: column;
+            backdrop-filter: blur(12px); z-index: 1;
+        }
+        .project-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--gradient-text); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+        }
+        .project-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px -15px rgba(37, 99, 235, 0.2); }
+        .project-card:hover::before { transform: scaleX(1); }
+        
+        .confidential-badge {
+            position: absolute; top: 25px; right: -40px; background: #ef4444; color: white;
+            font-size: 0.75rem; font-weight: 800; padding: 6px 45px; transform: rotate(45deg);
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3); letter-spacing: 1.5px; text-transform: uppercase;
+        }
+        
+        .project-icon { 
+            width: 70px; height: 70px; border-radius: 20px; background: var(--accent-glow);
+            color: var(--primary); display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; margin-bottom: 25px; transition: var(--transition);
+        }
+        .project-card:hover .project-icon { transform: scale(1.1) rotate(-5deg); background: var(--primary); color: white; }
+        
+        .project-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 15px; }
+        .project-desc { color: var(--text-muted); flex-grow: 1; font-size: 1.05rem; line-height: 1.7; }
+
+        /* Footer */
+        footer { 
+            text-align: center; padding: 60px 0 40px 0; border-top: 1px solid var(--border); 
+            color: var(--text-muted); margin-top: 50px; background: var(--bg-sec);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Language Utility */
+        [data-lang="en"] .lang-id { display: none !important; }
+        [data-lang="id"] .lang-en { display: none !important; }
+
+        @media (max-width: 768px) {
+            .hero { padding: 40px 0; text-align: center; justify-content: center; }
+            .hero h1 { font-size: 3rem; }
+            .hero h2 { justify-content: center; }
+            .action-btns { justify-content: center; }
+            .hero-img-container { justify-content: center; margin-top: 20px; }
+            .blob-1, .blob-2 { display: none; } /* Hide heavy blobs on mobile */
+        }
+    </style>
+</head>
+<body data-theme="dark" data-lang="id">
+
+    <!-- Decorative Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; width: 100%;">
+            <div class="logo">Fajar <span>Putra.</span></div>
+            <div class="controls">
+                <button class="btn-text" onclick="toggleLang()" id="langBtn">ID / EN</button>
+                <button class="btn-icon" onclick="toggleTheme()" title="Toggle Theme">
+                    <span class="mdi mdi-theme-light-dark"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content reveal">
+                <div class="badge">
+                    <span class="mdi mdi-shield-check-outline" style="font-size: 1.2rem;"></span> 
+                    <span class="lang-id">Kombinasi Profesional Medis & Software Engineer</span>
+                    <span class="lang-en">Medical Professional & Software Engineer Combo</span>
+                </div>
+                <h1><span class="lang-id">Halo, Saya</span><span class="lang-en">Hi, I'm</span> <br><span class="gradient-text">Fajar Iryanto Putra</span></h1>
+                <h2>
+                    <span class="mdi mdi-glasses"></span> Optometrist 
+                    <span style="color: var(--border);">|</span>
+                    <span class="mdi mdi-database-eye"></span> Data Engineer
+                    <span style="color: var(--border);">|</span>
+                    <span class="mdi mdi-code-braces"></span> Full Stack Dev
+                </h2>
+                <p class="lang-id">
+                    Saya menjembatani dunia medis dan rekayasa perangkat lunak. Menguasai diagnosa optometri klinis tingkat lanjut sekaligus mahir merancang arsitektur AI dan sistem data berskala besar. Berkomitmen menghadirkan inovasi Health-Tech yang presisi, canggih, dan berdampak nyata bagi keselamatan pasien.
+                </p>
+                <p class="lang-en">
+                    I bridge the gap between healthcare and software engineering. Mastering advanced clinical optometry diagnosis while proficiently designing large-scale AI and data system architectures. Committed to delivering Health-Tech innovations that are precise, advanced, and have a real impact on patient safety.
+                </p>
+                
+                <div class="action-btns">
+                    <a href="https://wa.me/6285603530711" target="_blank" class="btn btn-whatsapp">
+                        <span class="mdi mdi-whatsapp" style="font-size: 1.3rem;"></span> WhatsApp
+                    </a>
+                    <a href="mailto:fajarputra040901@gmail.com" class="btn btn-email">
+                        <span class="mdi mdi-email" style="font-size: 1.3rem;"></span> Email
+                    </a>
+                    <a href="resume_id.pdf" download id="downloadCvBtn" class="btn btn-outline">
+                        <span class="mdi mdi-file-pdf-box" style="font-size: 1.3rem;"></span> 
+                        <span class="lang-id">Unduh CV (ATS)</span>
+                        <span class="lang-en">Download CV (ATS)</span>
+                    </a>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/fajar-putra-ba14a627a/" target="_blank"><span class="mdi mdi-linkedin"></span></a>
+                    <a href="https://fajar444.github.io/portofolio/" target="_blank"><span class="mdi mdi-github"></span></a>
+                </div>
+            </div>
+
+            <div class="hero-img-container reveal">
+                <div class="hero-img-bg"></div>
+                <!-- Ganti href dan src dengan link foto 9:16 Anda -->
+                <a href="profil.png" target="_blank" class="hero-img">
+                    <img src="profil.png" alt="Fajar Putra">
+                </a>
+            </div>
+        </section>
+
+        <!-- Kekuatan Ganda (Skills Matrix) -->
+        <section class="reveal">
+            <div class="section-header">
+                <h2 class="section-title"><span class="gradient-text"><span class="lang-id">Kekuatan Ganda</span><span class="lang-en">Dual Expertise</span></span></h2>
+                <p class="section-subtitle lang-id">Memadukan insting klinis medis dengan keahlian komputasi tingkat tinggi untuk menciptakan solusi yang belum pernah ada sebelumnya.</p>
+                <p class="section-subtitle lang-en">Combining clinical medical instincts with high-level computational expertise to create unprecedented solutions.</p>
+            </div>
+
+            <div class="skills-container">
+                <!-- Clinical Skills -->
+                <div class="skill-box">
+                    <h3><span class="mdi mdi-hospital-box-outline"></span> <span class="lang-id">Diagnostik Klinis & Optometri</span><span class="lang-en">Clinical & Optometry Diagnostics</span></h3>
+                    <div class="skill-tags">
+                        <span class="tag"><i class="mdi mdi-eye-check"></i> Refraksi Objektif & Subjektif</span>
+                        <span class="tag"><i class="mdi mdi-laser-pointer"></i> OCT (Optical Coherence Tomography)</span>
+                        <span class="tag"><i class="mdi mdi-eye-circle"></i> Pentacam (Topografi Kornea)</span>
+                        <span class="tag"><i class="mdi mdi-eyedropper"></i> IOL Master / Immersion</span>
+                        <span class="tag"><i class="mdi mdi-monitor-eye"></i> Autorefractometer & NCT</span>
+                        <span class="tag"><i class="mdi mdi-ruler"></i> Pachymetry</span>
+                        <span class="tag"><i class="mdi mdi-chart-donut"></i> Humphrey Visual Field</span>
+                        <span class="tag"><i class="mdi mdi-flashlight"></i> Streak Retinoscope</span>
+                        <span class="tag"><i class="mdi mdi-format-align-justify"></i> Prism Bar & TNO Test</span>
+                    </div>
+                </div>
+
+                <!-- Tech Skills -->
+                <div class="skill-box">
+                    <h3><span class="mdi mdi-brain"></span> <span class="lang-id">Data Science & Rekayasa Perangkat Lunak</span><span class="lang-en">Data Science & Software Engineering</span></h3>
+                    <div class="skill-tags">
+                        <span class="tag"><i class="mdi mdi-language-python"></i> Python & Flask</span>
+                        <span class="tag"><i class="mdi mdi-robot-outline"></i> Machine Learning</span>
+                        <span class="tag"><i class="mdi mdi-database-search"></i> Data Engineering & Analysis</span>
+                        <span class="tag"><i class="mdi mdi-laravel"></i> Laravel & PHP</span>
+                        <span class="tag"><i class="mdi mdi-react"></i> React JS</span>
+                        <span class="tag"><i class="mdi mdi-language-javascript"></i> JavaScript (ES6+)</span>
+                        <span class="tag"><i class="mdi mdi-language-html5"></i> HTML5 & CSS3</span>
+                        <span class="tag"><i class="mdi mdi-database"></i> SQL / NoSQL</span>
+                        <span class="tag"><i class="mdi mdi-api"></i> RESTful API</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="reveal">
+            <div class="section-header">
+                <h2 class="section-title"><span class="mdi mdi-timeline-text-outline"></span> <span class="lang-id">Jejak Karir</span><span class="lang-en">Career Path</span></h2>
+                <p class="section-subtitle lang-id">Perjalanan profesional saya lintas industri, membuktikan dedikasi pada pelayanan pasien dan keunggulan teknologi.</p>
+                <p class="section-subtitle lang-en">My cross-industry professional journey, demonstrating dedication to patient care and technological excellence.</p>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Eyequ Lasik -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 - Sekarang (Present)</div>
+                    <div class="timeline-title">Optometris Klinis & Diagnostik</div>
+                    <div class="timeline-company"><span class="mdi mdi-hospital-building" style="color: var(--primary);"></span> Eyequ Lasik & Eye Center</div>
+                    <ul class="timeline-desc lang-id">
+                        <li>Mengoperasikan instrumen diagnostik mutakhir (OCT, Pentacam, IOL Master, Pachymetry) untuk analisis pre-operasi Lasik dan Katarak secara komprehensif.</li>
+                        <li>Memastikan akurasi data biometri dan topografi kornea untuk mendukung keputusan bedah dokter spesialis mata.</li>
+                        <li>Melakukan evaluasi <em>medical outcome</em> pasca-operasi bedah refraktif.</li>
+                    </ul>
+                    <ul class="timeline-desc lang-en">
+                        <li>Operating cutting-edge diagnostic instruments (OCT, Pentacam, IOL Master, Pachymetry) for comprehensive pre-operative Lasik and Cataract analysis.</li>
+                        <li>Ensuring the accuracy of biometry and corneal topography data to support the surgical decisions of ophthalmologists.</li>
+                        <li>Conducting post-operative medical outcome evaluations for refractive surgeries.</li>
+                    </ul>
+                </div>
+
+                <!-- Bina Sehat -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Okt 2023 - 2025</div>
+                    <div class="timeline-title">Optometris</div>
+                    <div class="timeline-company"><span class="mdi mdi-hospital-marker" style="color: var(--primary);"></span> RSU Bina Sehat Bandung</div>
+                    <ul class="timeline-desc lang-id">
+                        <li>Menangani >40 pasien per hari dengan tingkat presisi tinggi (Umum, BPJS, Asuransi).</li>
+                        <li>Melakukan pemeriksaan penunjang seperti Humphrey Visual Field dan NCT untuk skrining awal penyakit degeneratif mata.</li>
+                        <li>Meningkatkan kepatuhan pasien hingga 80% melalui edukasi preventif dan rehabilitasi penglihatan.</li>
+                    </ul>
+                    <ul class="timeline-desc lang-en">
+                        <li>Handled >40 patients daily with high precision (General, BPJS, Insurance).</li>
+                        <li>Conducted supporting examinations such as Humphrey Visual Field and NCT for early screening of degenerative eye diseases.</li>
+                        <li>Increased patient compliance by 80% through preventive education and vision rehabilitation.</li>
+                    </ul>
+                </div>
+
+                <!-- Rolas Optik -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2019 - 2022</div>
+                    <div class="timeline-title">Optometris / Optician</div>
+                    <div class="timeline-company"><span class="mdi mdi-glasses" style="color: var(--primary);"></span> Rolas Optik</div>
+                    <ul class="timeline-desc lang-id">
+                        <li>Memberikan layanan pemeriksaan refraksi dasar (objektif dan subjektif) dengan Streak Retinoscope dan Trial Lens.</li>
+                        <li>Merekomendasikan lensa dan frame (dispensing) yang sesuai dengan anatomi wajah dan kebutuhan visus pasien.</li>
+                        <li>Mencapai target kepuasan pelanggan melalui pelayanan prima dan akurasi koreksi kacamata.</li>
+                    </ul>
+                    <ul class="timeline-desc lang-en">
+                        <li>Provided basic refraction examination services (objective and subjective) using Streak Retinoscope and Trial Lenses.</li>
+                        <li>Recommended lenses and frames (dispensing) tailored to the patient's facial anatomy and visual needs.</li>
+                        <li>Achieved customer satisfaction targets through excellent service and accurate spectacle correction.</li>
+                    </ul>
+                </div>
+
+                <!-- Freelance IT -->
+                <div class="timeline-item">
+                    <div class="timeline-date">Feb 2018 - Sekarang (Present)</div>
+                    <div class="timeline-title">Web Developer & Data Engineer (Freelance)</div>
+                    <div class="timeline-company"><span class="mdi mdi-laptop-mac" style="color: var(--primary);"></span> Remote / Bandung</div>
+                    <ul class="timeline-desc lang-id">
+                        <li>Merancang dan mendeploy >52 aplikasi web terstruktur (HRIS, EMR, GIS) menggunakan ekosistem Laravel, React, dan Python.</li>
+                        <li>Mengoptimalkan sistem database klien yang berdampak pada peningkatan efisiensi operasional hingga 20% dalam 6 bulan.</li>
+                        <li>Mempertahankan rekor kepuasan klien >90% melalui manajemen SDLC end-to-end yang tangkas.</li>
+                    </ul>
+                    <ul class="timeline-desc lang-en">
+                        <li>Designed and deployed >52 structured web applications (HRIS, EMR, GIS) using the Laravel, React, and Python ecosystems.</li>
+                        <li>Optimized client database systems resulting in a 20% increase in operational efficiency within 6 months.</li>
+                        <li>Maintained a >90% client satisfaction record through agile end-to-end SDLC management.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="reveal">
+            <div class="section-header">
+                <h2 class="section-title"><span class="mdi mdi-rocket-launch-outline"></span> <span class="lang-id">Mahakarya & Proyek Terpilih</span><span class="lang-en">Selected Masterpieces</span></h2>
+                <p class="section-subtitle lang-id">Berikut adalah bukti nyata bagaimana saya mentransformasi ide kompleks menjadi sistem perangkat lunak yang andal dan aman (Dilindungi NDA).</p>
+                <p class="section-subtitle lang-en">Here is concrete proof of how I transform complex ideas into reliable and secure software systems (NDA Protected).</p>
+            </div>
+
+            <div class="projects-grid">
+                
+                <!-- Project 1: Data Engineer Medical Outcome (NEW) -->
+                <div class="project-card">
+                    <div class="confidential-badge">Confidential</div>
+                    <div class="project-icon"><span class="mdi mdi-chart-scatter-plot"></span></div>
+                    <div class="project-title">Medical Outcome Analytics (LVC & Cataract)</div>
+                    <div class="project-desc lang-id">
+                        Sebagai <strong>Data Analyst & Data Engineer</strong>, saya membangun pipa data (pipeline) untuk mengekstraksi dan membersihkan ribuan rekam medis operasi bedah refraktif (Lasik/PRK) dan Katarak. Menggunakan <strong>Python & Machine Learning</strong> untuk memvisualisasikan tren pemulihan pasien, memprediksi anomali <em>medical outcome</em>, dan membantu dokter mengoptimalkan nomogram bedah.
+                    </div>
+                    <div class="project-desc lang-en">
+                        As a <strong>Data Analyst & Data Engineer</strong>, I built data pipelines to extract and clean thousands of medical records for refractive (Lasik/PRK) and Cataract surgeries. Utilized <strong>Python & Machine Learning</strong> to visualize patient recovery trends, predict <em>medical outcome</em> anomalies, and assist surgeons in optimizing surgical nomograms.
+                    </div>
+                </div>
+
+                <!-- Project 2: Virtual Try On -->
+                <div class="project-card">
+                    <div class="confidential-badge">Confidential</div>
+                    <div class="project-icon"><span class="mdi mdi-face-recognition"></span></div>
+                    <div class="project-title">Virtual Try-On Glasses (AI & AR)</div>
+                    <div class="project-desc lang-id">
+                        Aplikasi revolusioner berbasis <strong>Kecerdasan Buatan (AI) dan Augmented Reality (AR)</strong>. Mampu mendeteksi bentuk wajah (Face Shape Detection) secara real-time melalui kamera dan merekomendasikan frame kacamata presisi. Proyek ini memangkas tingkat retur pembelian kacamata online secara signifikan.
+                    </div>
+                    <div class="project-desc lang-en">
+                        A revolutionary application based on <strong>AI and Augmented Reality (AR)</strong>. Capable of real-time Face Shape Detection via the camera to recommend precise spectacle frames. This project significantly reduced the return rate of online glasses purchases.
+                    </div>
+                </div>
+
+                <!-- Project 3: IVCS (UPDATED) -->
+                <div class="project-card">
+                    <div class="confidential-badge">Confidential</div>
+                    <div class="project-icon"><span class="mdi mdi-eye-check-outline"></span></div>
+                    <div class="project-title">IVCS (National Eye Screening)</div>
+                    <div class="project-desc lang-id">
+                        Sistem informasi manajemen terpusat yang dirancang khusus untuk <strong>pendataan pemeriksaan bakti sosial (baksos) mata gratis di seluruh wilayah Indonesia</strong>. Mampu menangani ribuan input data relawan secara sinkron, memetakan demografi kelainan refraksi, dan mempercepat distribusi alat bantu penglihatan ke daerah pelosok.
+                    </div>
+                    <div class="project-desc lang-en">
+                        Centralized management information system specifically designed for <strong>data collection of free social eye examinations across Indonesia</strong>. Capable of handling thousands of synchronous volunteer data inputs, mapping the demographics of refractive errors, and accelerating the distribution of vision aids to remote areas.
+                    </div>
+                </div>
+
+                <!-- Project 4: HRIS -->
+                <div class="project-card">
+                    <div class="confidential-badge">Confidential</div>
+                    <div class="project-icon"><span class="mdi mdi-account-group-outline"></span></div>
+                    <div class="project-title">Enterprise HRIS System</div>
+                    <div class="project-desc lang-id">
+                        Sistem Informasi Sumber Daya Manusia berskala besar. Mengotomatisasi siklus SDM mulai dari pelacakan absensi geolokasi, kalkulasi payroll dinamis, hierarki pengajuan cuti, hingga dashboard evaluasi KPI. Dibangun dengan lapisan keamanan tinggi (Laravel & SQL Injection prevention).
+                    </div>
+                    <div class="project-desc lang-en">
+                        Large-scale Human Resource Information System. Automates the HR lifecycle from geolocation attendance tracking, dynamic payroll calculation, leave request hierarchies, to KPI evaluation dashboards. Built with high-security layers (Laravel & SQL Injection prevention).
+                    </div>
+                </div>
+
+                <!-- Project 5: Primaya -->
+                <div class="project-card">
+                    <div class="confidential-badge">Confidential</div>
+                    <div class="project-icon"><span class="mdi mdi-mother-heart"></span></div>
+                    <div class="project-title">Primaya Mother Care</div>
+                    <div class="project-desc lang-id">
+                        Platform layanan kesehatan digital terpadu untuk ibu dan anak. Fitur utama mencakup manajemen jadwal konsultasi dokter, rekam medis kehamilan digital (EMR), dan grafik interaktif pemantauan tumbuh kembang balita secara real-time berstandar WHO.
+                    </div>
+                    <div class="project-desc lang-en">
+                        An integrated digital healthcare platform for mothers and children. Core features include doctor consultation scheduling, digital pregnancy medical records (EMR), and interactive real-time WHO-standard toddler growth monitoring charts.
+                    </div>
+                </div>
+
+                <!-- Project 6: Widyaloka -->
+                <div class="project-card">
+                    <div class="confidential-badge">Confidential</div>
+                    <div class="project-icon"><span class="mdi mdi-map-legend"></span></div>
+                    <div class="project-title">Widyaloka (Cultural GIS)</div>
+                    <div class="project-desc lang-id">
+                        Sistem Informasi Geografis (GIS) berupa peta interaktif kekayaan Kebudayaan Indonesia. Menyajikan visualisasi data spasial yang memukau terkait persebaran bahasa daerah, adat istiadat, dan kesenian di seluruh nusantara dalam antarmuka yang sangat responsif.
+                    </div>
+                    <div class="project-desc lang-en">
+                        Geographic Information System (GIS) featuring an interactive map of Indonesian Cultural wealth. Presents stunning spatial data visualizations regarding the distribution of regional languages, customs, and traditional arts across the archipelago in a highly responsive interface.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Education & Org Section -->
+        <section class="reveal">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 50px;">
+                
+                <!-- Education -->
+                <div>
+                    <h2 class="section-title" style="font-size: 2.2rem;"><span class="mdi mdi-school-outline"></span> <span class="lang-id">Pendidikan Akademis</span><span class="lang-en">Academic Education</span></h2>
+                    <div class="timeline-container" style="margin-top: 40px;">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Lulus 2023 (Graduated)</div>
+                            <div class="timeline-title">Diploma III Optometri</div>
+                            <div class="timeline-company">STIKes Dharma Husada Bandung</div>
+                            <ul class="timeline-desc">
+                                <li>GPA / IPK: 3.60 / 4.00 (Cum Laude)</li>
+                                <li class="lang-id">Tugas Akhir: Mengembangkan "Marmot" (Manajemen Aplikasi Rekam Medis Optik Terintegrasi) dengan integrasi database pasien.</li>
+                                <li class="lang-en">Final Project: Developed "Marmot" (Integrated Optical Medical Record Management Application) with patient database integration.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization -->
+                <div>
+                    <h2 class="section-title" style="font-size: 2.2rem;"><span class="mdi mdi-account-group-outline"></span> <span class="lang-id">Kepemimpinan</span><span class="lang-en">Leadership</span></h2>
+                    <div class="timeline-container" style="margin-top: 40px;">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Sep 2020 - Sekarang (Present)</div>
+                            <div class="timeline-title">
+                                <span class="lang-id">Ka. Div. Media & Komunikasi</span>
+                                <span class="lang-en">Head of Media & Comm.</span>
+                            </div>
+                            <div class="timeline-company">Yayasan Indonesia Melihat Nusantara</div>
+                            <ul class="timeline-desc lang-id">
+                                <li>Memimpin inisiatif digitalisasi manajemen kegiatan yayasan dan membangun arsitektur data.</li>
+                                <li>Merancang sistem rekapitulasi terstruktur untuk program Bakti Sosial Nasional yang menangani ribuan warga.</li>
+                            </ul>
+                            <ul class="timeline-desc lang-en">
+                                <li>Led the digitalization initiative for foundation event management and built the data architecture.</li>
+                                <li>Designed a structured recapitulation system for the National Social Service program serving thousands of citizens.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h2 style="color: var(--text-main); margin-bottom: 15px; font-weight: 800; font-size: 2rem;">Fajar Putra.</h2>
+            <p style="margin-bottom: 25px; font-size: 1.1rem;">Optometrist & Data Engineer</p>
+            <div class="social-links" style="justify-content: center; margin-bottom: 25px;">
+                <a href="https://www.linkedin.com/in/fajar-putra-ba14a627a/" target="_blank"><span class="mdi mdi-linkedin"></span></a>
+                <a href="https://fajar444.github.io/portofolio/" target="_blank"><span class="mdi mdi-github"></span></a>
+            </div>
+            <p style="font-size: 0.95rem;">&copy; 2026 Fajar Iryanto Putra. <span class="lang-id">Hak Cipta Dilindungi.</span><span class="lang-en">All Rights Reserved.</span></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', newTheme);
+            
+            const icon = document.querySelector('.mdi-theme-light-dark');
+            icon.style.transform = 'rotate(180deg) scale(1.2)';
+            setTimeout(() => icon.style.transform = 'rotate(0) scale(1)', 400);
+        }
+
+        // 2. Language Toggle
+        function toggleLang() {
+            const body = document.body;
+            const currentLang = body.getAttribute('data-lang');
+            const newLang = currentLang === 'id' ? 'en' : 'id';
+            body.setAttribute('data-lang', newLang);
+            
+            const cvBtn = document.getElementById('downloadCvBtn');
+            if(newLang === 'en') {
+                cvBtn.setAttribute('href', 'Fajar_Iryanto_Putra_resume_en.pdf');
+            } else {
+                cvBtn.setAttribute('href', 'Fajar_Iryanto_Putra_resume_id.pdf');
+            }
+        }
+
+        // 3. Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 120;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+    </script>
+</body>
+</html>
