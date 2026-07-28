@@ -1,0 +1,27 @@
+# Allow all Search Engine Crawlers (Google, Bing, Yahoo, DuckDuckGo)
+User-agent: *
+Allow: /
+
+# Allow AI & LLM Crawlers (Perplexity, SearchGPT, ChatGPT, ClaudeBot, Gemini)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+User-agent: FacebookExternalHit
+Allow: /
+
+Sitemap: https://fajar444.github.io/portofolio/sitemap.xml

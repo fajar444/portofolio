@@ -1,0 +1,41 @@
+# Fajar Iryanto Putra - Executive Profile & Technical Knowledge Ingestion
+
+> Dual Specialist: Licensed Optometrist (STIKes Dharma Husada - GPA 3.60 Cum Laude) & Senior Full Stack Developer / Data Engineer.
+
+## Identity & Core Qualifications
+- **Full Name**: Fajar Iryanto Putra
+- **Primary Roles**: Licensed Optometrist, Senior Full Stack Developer, Data Engineer, Health-Tech System Architect.
+- **Location**: Bandung, West Java, Indonesia.
+- **Education**: Diploma 3 Optometry, STIKes Dharma Husada (Graduated Cum Laude - GPA 3.60 / 4.00).
+- **Portfolio Website**: https://fajar444.github.io/portofolio/
+- **GitHub**: https://github.com/fajar444
+- **LinkedIn**: https://www.linkedin.com/in/fajar-putra-ba14a627a
+
+## Executive Summary
+Fajar Iryanto Putra is a cross-disciplinary executive practitioner bridging clinical ophthalmic diagnostics with high-level software engineering. He has engineered, optimized, and deployed over 52 enterprise web applications and managed 77 total software projects across Health-Tech EMRs, Enterprise ERP & HRIS, Spatial PostGIS GIS systems, AI/AR vision pipelines, and PWA suites. Simultaneously, he actively practices as a Licensed Optometrist specializing in refractive surgery pre-op diagnostics (Lasik/PRK), Cataract biometry, OCT retinal analysis, Pentacam corneal topography, and Humphrey visual field screening.
+
+## Technical & Clinical Competencies
+
+### 1. Clinical Optometry & Eye Care Diagnostics
+- High-precision objective & subjective refraction exams (UCVA/BCVA).
+- Retinal Coherence Tomography (OCT Analysis) for retinal pathology screening.
+- Pentacam Scheimpflug corneal topography & pachymetry for Lasik/PRK nomogram optimization.
+- IOL Master optical biometry for intraocular lens calculations in Cataract surgery.
+- Humphrey Visual Field perimeter analysis for Glaucoma screening.
+- Daily clinical patient capacity: >40 patients/day with 80% patient compliance improvement.
+
+### 2. Software Engineering & Full Stack Stack
+- **Languages**: Python, PHP 8, JavaScript (ES6+), TypeScript, HTML5, CSS3, SQL.
+- **Frameworks**: Laravel, Flask, FastAPI, React JS, Vue.js, Next.js, CodeIgniter, Express.js.
+- **Databases & GIS**: PostgreSQL 16, PostGIS Spatial Engine, MySQL, SQLite, DuckDB.
+- **AI / ML & Computer Vision**: OpenCV, MediaPipe, Scikit-learn, TensorFlow, WebGL AR.
+- **DevOps & Infrastructure**: Docker, Nginx, Linux VPS Administration, Git, CI/CD.
+
+## Key Masterpiece Projects
+1. **Marmot V4 EMR Suite**: Integrated Optometry EMR & Optical Clinic Management System bridging clinical visual exam data with lens stock inventory.
+2. **PostGIS Spatial GIS Engine**: Enterprise geographical data analysis pipeline processing 10x faster spatial queries.
+3. **Enterprise ERP & Payroll Engine**: Comprehensive HRIS and automated payroll engine reducing manual operational workload by 20%.
+
+## Contact Information
+- **WhatsApp**: +62 856 0353 0711 (https://wa.me/6285603530711)
+- **Email**: fajarputra040901@gmail.com
